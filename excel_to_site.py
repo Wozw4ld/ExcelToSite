@@ -49,7 +49,7 @@ def start_automation():
         return
 
     try:
-        user_data_dir = "D:\\Users\\Admin\\AppData\\Local\\Chromium\\User Data\\Default"  # Пример для Windows
+        user_data_dir = "С:\\Users\\Admin\\AppData\\Local\\Chromium\\User Data\\Default"  # Пример для Windows
 
         options = Options()
         options.add_argument(f"--user-data-dir={user_data_dir}")
