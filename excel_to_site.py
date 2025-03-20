@@ -49,12 +49,17 @@ def start_automation():
         return
 
     try:
-        user_data_dir = "С:\\Users\\Admin\\AppData\\Local\\Chromium\\User Data\\Default"  # Пример для Windows
+        chromium_gost_path = "C:\\Users\\asaparbaev\\AppData\\Local\\Chromium\\Application\\chrome.exe"  # Для Windows
+        user_data_dir = "D:\\Users\\asaparbaev\\AppData\\Local\\Chromium\\User Data\\Default"
+        profile_dir = "asd"  # Или "Default", "Guest Profile" и т.д.
 
         options = Options()
+        options.binary_location = chromium_gost_path  # Указываем путь к Chromium-GOST
         options.add_argument(f"--user-data-dir={user_data_dir}")
-        service = Service(ChromeDriverManager().install())
+        options.add_argument(f"--profile-directory={profile_dir}")	
+        service = Service(executable_path=chromium_gost_path)
         driver = webdriver.Chrome(service=service, options=options)
+
         driver.get(url)
     except Exception as e:
         messagebox.showerror("Ошибка", f"Не удалось открыть браузер или URL: {e}")

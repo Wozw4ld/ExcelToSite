@@ -1,23 +1,20 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service  # Импортируем Service
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 
 # Настройки профиля
-user_data_dir = "D:\\Users\\asaparbaev\\AppData\\Local\\Chromium\\User Data\\Default"  # Пример для Windows
-profile_dir = "asd"  # Или "Guest Profile"
-
 options = Options()
+
+# Путь к исполняемому файлу Яндекс.Браузера
+options.binary_location = 'C:\\Users\\asaparbaev\\AppData\\Local\\Yandex\\YandexBrowser\\Application\\browser.exe'
+ 
+user_data_dir = "C:\\Users\\Admin\\AppData\\Local\\Chromium\\User Data"
+profile_dir = "asd"
 options.add_argument(f"--user-data-dir={user_data_dir}")
-options.add_argument(f"--profile-directory={profile_dir}")
+options.add_argument(f"--profile-directory={profile_dir}")	
+service = Service(executable_path='yandexdriver.exe')
 
-# Вариант 1: Использование Service с автоматическим менеджером
-service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=options)
-
-# Вариант 2: Указать путь к драйверу вручную (если нужно)
-# service = Service(executable_path="C:/path/to/chromedriver.exe")
-# driver = webdriver.Chrome(service=service, options=options)
-
-driver.get("https://vk.com/feed")
+driver.get('https://yandex.ru')
 a = input()
+driver.quit()
